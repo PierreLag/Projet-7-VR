@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Videos/Video_VR_02.mp4.meta
+*.mp4
+Assets/Videos/Video_VR_01.mp4.meta
