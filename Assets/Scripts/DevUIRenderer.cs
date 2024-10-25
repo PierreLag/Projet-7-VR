@@ -16,6 +16,7 @@ public class DevUIRenderer : MonoBehaviour
     void Start()
     {
         InvokeRepeating("DisplayFrameRate", 1, 1);
+        InvokeRepeating("DisplayTriangleCount", 1, 1);
     }
 
     private void DisplayFrameRate()
@@ -28,6 +29,13 @@ public class DevUIRenderer : MonoBehaviour
 
     private void DisplayTriangleCount()
     {
+        triangleCount = 0;
+        MeshFilter[] allMeshes = FindObjectsByType<MeshFilter>(FindObjectsSortMode.None);
 
+        foreach (MeshFilter mesh in allMeshes)
+        {
+            triangleCount += mesh.mesh.triangles.Length;
+        }
+        triangleDisplay.text = "Triangles : " + triangleCount;
     }
 }
