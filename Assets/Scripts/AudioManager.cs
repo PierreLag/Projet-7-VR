@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     private static AudioManager _this;
 
-    private AudioSource currentlyPlaying;
+    private static AudioSource currentlyPlaying;
 
     // Start is called before the first frame update
     void Start()
@@ -22,34 +22,40 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void ChangeCurrentlyPlaying(AudioSource audio)
+    public static void ChangeCurrentlyPlaying(AudioSource audio)
     {
         currentlyPlaying = audio;
         currentlyPlaying.Play();
+        MenuController.GetThis().ChangeMusicName();
     }
 
-    public void AdjustVolume(float volume)
+    public static void AdjustVolume(float volume)
     {
-        currentlyPlaying.volume = volume;
+        if (currentlyPlaying != null)
+            currentlyPlaying.volume = volume;
     }
 
-    public void PlayCurrentTrack()
+    public static void PlayCurrentTrack()
     {
-        currentlyPlaying.Play();
+        if (currentlyPlaying != null)
+            currentlyPlaying.Play();
     }
 
-    public void PauseCurrentlyPlaying()
+    public static void PauseCurrentlyPlaying()
     {
-        currentlyPlaying.Pause();
+        if (currentlyPlaying != null)
+            currentlyPlaying.Pause();
     }
 
-    public void StopCurrentlyPlaying()
+    public static void StopCurrentlyPlaying()
     {
-        currentlyPlaying.Stop();
+        if (currentlyPlaying != null)
+            currentlyPlaying.Stop();
         currentlyPlaying = null;
+        MenuController.GetThis().ChangeMusicName();
     }
 
-    public AudioSource GetCurrentlyPlaying()
+    public static AudioSource GetCurrentlyPlaying()
     {
         return currentlyPlaying;
     }

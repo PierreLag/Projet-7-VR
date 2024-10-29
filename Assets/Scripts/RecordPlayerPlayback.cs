@@ -9,8 +9,6 @@ public class RecordPlayerPlayback : MonoBehaviour
 {
     [SerializeField]
     private XRSocketInteractor cdSocket;
-    [SerializeField]
-    private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +19,11 @@ public class RecordPlayerPlayback : MonoBehaviour
     public void CDInserted(SelectEnterEventArgs args)
     {
         XRBaseInteractable grabbedCD = (XRBaseInteractable)args.interactableObject;
-        audioManager.ChangeCurrentlyPlaying(grabbedCD.GetComponent<AudioSource>());
+        AudioManager.ChangeCurrentlyPlaying(grabbedCD.GetComponent<AudioSource>());
     }
 
     public void CDEjected(SelectExitEventArgs args)
     {
-        audioManager.StopCurrentlyPlaying();
+        AudioManager.StopCurrentlyPlaying();
     }
 }

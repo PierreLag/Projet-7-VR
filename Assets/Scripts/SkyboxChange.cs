@@ -13,6 +13,7 @@ public class SkyboxChange : MonoBehaviour
     public void ChangeSkybox(Texture2D panorama)
     {
         skybox.SetTexture("_MainTex", panorama);
+        videoPlayer.Stop();
     }
 
     public void ChangeSkybox(VideoClip videoClip)
