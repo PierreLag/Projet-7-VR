@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEditor;
 
 public class ApplicationManager : MonoBehaviour
 {
@@ -47,7 +48,15 @@ public class ApplicationManager : MonoBehaviour
 
     private void OnMenuButtonPressed(InputAction.CallbackContext context)
     {
-        Debug.Log("Menu button pressed");
         MenuController.GetThis().ToggleMenuDisplay();
+    }
+
+    public static void QuitApplication()
+    {
+        #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+        #else
+            Application.Quit();
+        #endif
     }
 }

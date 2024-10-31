@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     private static AudioManager _this;
 
     private static AudioSource currentlyPlaying;
+    private static float globalVolume;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +21,13 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        globalVolume = 1f;
     }
 
     public static void ChangeCurrentlyPlaying(AudioSource audio)
     {
         currentlyPlaying = audio;
+        currentlyPlaying.volume = globalVolume;
         currentlyPlaying.Play();
         MenuController.GetThis().ChangeMusicName();
     }
@@ -33,6 +36,7 @@ public class AudioManager : MonoBehaviour
     {
         if (currentlyPlaying != null)
             currentlyPlaying.volume = volume;
+        globalVolume = volume;
     }
 
     public static void PlayCurrentTrack()

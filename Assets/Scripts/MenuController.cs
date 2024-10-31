@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class MenuController : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class MenuController : MonoBehaviour
     private Slider progressSlider;
     [SerializeField]
     private TextMeshProUGUI musicName;
+
+    private InteractionLayerMask defaultLayerMask;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,6 +32,13 @@ public class MenuController : MonoBehaviour
             _this = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        NearFarInteractor nearFarInteractor = FindObjectOfType<NearFarInteractor>(true);
+        Debug.Log("Is Near-Far interactor used for the default null ? : " + (nearFarInteractor == null ? "Yes" : "No"));
+        defaultLayerMask = nearFarInteractor.interactionLayers;
     }
 
     private void Update()
@@ -55,7 +66,25 @@ public class MenuController : MonoBehaviour
 
     public void ToggleMenuDisplay()
     {
-        menuCanvas.enabled = !menuCanvas.enabled;
+        NearFarInteractor[] nearFarInteractors = FindObjectsByType<NearFarInteractor>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        menuCanvas.gameObject.SetActive(!menuCanvas.gameObject.activeSelf);
+        if (menuCanvas.gameObject.activeSelf)
+        {
+            foreach(NearFarInteractor interactor in nearFarInteractors)
+            {
+                interactor.enableFarCasting = true;
+                interactor.interactionLayers = new InteractionLayerMask();
+            }
+        }
+        else
+        {
+            foreach (NearFarInteractor interactor in nearFarInteractors)
+            {
+                interactor.enableFarCasting = false;
+                interactor.interactionLayers = defaultLayerMask;
+            }
+        }
     }
 
     public static MenuController GetThis()
