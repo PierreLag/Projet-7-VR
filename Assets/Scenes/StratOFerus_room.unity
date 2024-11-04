@@ -7397,6 +7397,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4926321603332114836, guid: 337ff6c799c94524cb015f9b9ac3131f, type: 3}
+      propertyPath: shouldDeactivateNearFarInteractorsOnLeave
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6060505074479719947, guid: 337ff6c799c94524cb015f9b9ac3131f, type: 3}
       propertyPath: m_Name
       value: MenuUI

@@ -17,22 +17,10 @@ public class MenuController : MonoBehaviour
     private Slider progressSlider;
     [SerializeField]
     private TextMeshProUGUI musicName;
+    [SerializeField]
+    private bool shouldDeactivateNearFarInteractorsOnLeave;
 
     private InteractionLayerMask defaultLayerMask;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        if (_this != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _this = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
 
     private void Start()
     {
@@ -81,7 +69,7 @@ public class MenuController : MonoBehaviour
         {
             foreach (NearFarInteractor interactor in nearFarInteractors)
             {
-                interactor.enableFarCasting = false;
+                interactor.enableFarCasting = !shouldDeactivateNearFarInteractorsOnLeave;
                 interactor.interactionLayers = defaultLayerMask;
             }
         }
