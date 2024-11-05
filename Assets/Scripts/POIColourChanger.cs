@@ -20,10 +20,14 @@ public class POIColourChanger : MonoBehaviour
         MeshRenderer[] meshes = currentPOI.GetComponentsInChildren<MeshRenderer>();
         foreach(MeshRenderer mesh in meshes)
         {
-            mesh.material = selectedMaterial;
+            mesh.material = selectedMaterial;   // Change le matériel du point d'intérêt initial pour selui sélectionné
         }
     }
 
+    /// <summary>
+    /// Cette méthode change l'apparance du point d'intérêt courant vers le matériel désélectionné, et le nouveau point d'intérêt vers le matériel sélectionné.
+    /// </summary>
+    /// <param name="pointOfInterest"></param>
     public void NewSelection(GameObject pointOfInterest)
     {
 

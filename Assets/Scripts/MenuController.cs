@@ -27,6 +27,8 @@ public class MenuController : MonoBehaviour
         NearFarInteractor nearFarInteractor = FindObjectOfType<NearFarInteractor>(true);
         Debug.Log("Is Near-Far interactor used for the default null ? : " + (nearFarInteractor == null ? "Yes" : "No"));
         defaultLayerMask = nearFarInteractor.interactionLayers;
+        progressSlider.value = AudioManager.GetGlobalVolume();
+        _this = this;
     }
 
     private void Update()
@@ -35,10 +37,17 @@ public class MenuController : MonoBehaviour
 
         if (currentlyPlaying != null)
         {
-            progressSlider.value = currentlyPlaying.time / currentlyPlaying.clip.length;
+            progressSlider.value = currentlyPlaying.time / currentlyPlaying.clip.length;    // Met à jour la barre de progrès de la musique
+        }
+        else
+        {
+            progressSlider.value = 0f;
         }
     }
 
+    /// <summary>
+    /// Cette méthode change le texte du champs montrant le nom de la musique, avec la musique qui se joue à l'heure actuelle.
+    /// </summary>
     public void ChangeMusicName()
     {
         AudioSource currentlyPlaying = AudioManager.GetCurrentlyPlaying();
@@ -52,6 +61,9 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Cette méthode active ou désactive l'affichage du menu d'options.
+    /// </summary>
     public void ToggleMenuDisplay()
     {
         NearFarInteractor[] nearFarInteractors = FindObjectsByType<NearFarInteractor>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -75,6 +87,10 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Cette fonction retourne l'instance courante du menu.
+    /// </summary>
+    /// <returns>L'instance courante du menu d'options.</returns>
     public static MenuController GetThis()
     {
         return _this;

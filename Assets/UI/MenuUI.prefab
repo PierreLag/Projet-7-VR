@@ -2497,6 +2497,7 @@ MonoBehaviour:
   menuCanvas: {fileID: 1692881819770487605}
   progressSlider: {fileID: 1238842922549166064}
   musicName: {fileID: 6174430322493720817}
+  shouldDeactivateNearFarInteractorsOnLeave: 0
 --- !u!1 &6198497500683516113
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,6 +2851,7 @@ GameObject:
   - component: {fileID: 621100053361908088}
   - component: {fileID: 4178293803347363893}
   - component: {fileID: 7450998088042545605}
+  - component: {fileID: 2069590471628663086}
   m_Layer: 0
   m_Name: CanvasOptions
   m_TagString: Untagged
@@ -2940,6 +2942,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2069590471628663086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016725567407996713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &7519905889971108209
 GameObject:
   m_ObjectHideFlags: 0

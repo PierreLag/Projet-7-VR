@@ -15,10 +15,14 @@ public class DevUIRenderer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // On répète l'exécution de ces méthodes chaque seconde.
         InvokeRepeating("DisplayFrameRate", 1, 1);
         InvokeRepeating("DisplayTriangleCount", 1, 1);
     }
 
+    /// <summary>
+    /// Cette méthode change le texte du champs de FPS pour afficher le nombre de Frames Par Seconde.
+    /// </summary>
     private void DisplayFrameRate()
     {
         float current = 0;
@@ -27,6 +31,9 @@ public class DevUIRenderer : MonoBehaviour
         fpsDisplay.text = "FPS : " + avgFPS;
     }
 
+    /// <summary>
+    /// Cette méthode change le texte du champs de triangles pour afficher le nombre de triangles dans la scène.
+    /// </summary>
     private void DisplayTriangleCount()
     {
         triangleCount = 0;
